@@ -18,6 +18,7 @@
 
     <modules>
         <module>registry-nacos</module>
+        <module>router-gateway</module>
     </modules>
 
     <properties>
