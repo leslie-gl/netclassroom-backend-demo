@@ -37,6 +37,9 @@ public class ResponseData<T> {
         this.data = data;
     }*/
 
+    public ResponseData() {
+    }
+
     // 构造方法 -- end
 
     //---------------------------------------------------
