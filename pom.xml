@@ -17,15 +17,17 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <modules>
-        <module>registry-nacos</module>
+        <module>common</module>
         <module>router-gateway</module>
+        <module>service-user-info</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
+        <servlet-api>4.0.0</servlet-api>
         <spring-cloud.version>Hoxton.SR6</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.1.RELEASE</spring-cloud-alibaba.version>
-        <servlet-api>4.0.0</servlet-api>
+        <userAgentUtils-version>1.21</userAgentUtils-version>
     </properties>
 
     <dependencyManagement>
@@ -50,6 +52,11 @@
                 <version>${servlet-api}</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${userAgentUtils-version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -73,5 +80,44 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <springProfilesActive>dev</springProfilesActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <springProfilesActive>test</springProfilesActive>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <springProfilesActive>prod</springProfilesActive>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
 
 </project>
