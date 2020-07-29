@@ -2,4 +2,6 @@ spring:
   cloud:
     nacos:
       config:
-        namespace: ad8a6cc9-ae3c-4041-a6f6-4a7fbbc9489e
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: 92de4f9c-7304-421b-adaa-f61bf297e36e

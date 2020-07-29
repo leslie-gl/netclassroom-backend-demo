@@ -29,8 +29,8 @@ public class LoginGlobalFilter implements GlobalFilter {
             response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
             // 默认httpStatus为 200
             //response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
-            ResponseData<Object> fallback = ResponseData.failure(RESPONSE_CODE_ENUM.JWT_LACK.name());
-            DataBuffer wrap = response.bufferFactory().wrap(JsonUtils.toJsonString(fallback).getBytes(StandardCharsets.UTF_8));
+            ResponseData<Object> responseData = new ResponseData<>(RESPONSE_CODE_ENUM.JWT_LACK);
+            DataBuffer wrap = response.bufferFactory().wrap(JsonUtils.toJsonString(responseData).getBytes(StandardCharsets.UTF_8));
             return response.writeWith(Mono.just(wrap));
         }
         return chain.filter(exchange);
