@@ -2,4 +2,4 @@ spring:
   cloud:
     nacos:
       config:
-        namespace: 89b0dd7e-cc12-4e58-8512-a9fa5ad4960b
+        namespace: ad8a6cc9-ae3c-4041-a6f6-4a7fbbc9489e
