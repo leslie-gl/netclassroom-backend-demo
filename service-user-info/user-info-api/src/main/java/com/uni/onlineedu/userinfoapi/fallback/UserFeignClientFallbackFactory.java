@@ -1,5 +1,6 @@
 package com.uni.onlineedu.userinfoapi.fallback;
 
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.leslie.common.response.ResponseData;
 import com.uni.onlineedu.userinfoapi.client.UserFeignClient;
 import com.uni.onlineedu.userinfoapi.model.UserDTO;

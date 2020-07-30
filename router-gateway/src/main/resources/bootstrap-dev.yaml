@@ -4,4 +4,8 @@ spring:
       config:
         server-addr: 127.0.0.1:8848
         file-extension: yaml
-        namespace: 4021d577-498f-4ddf-b624-c391b75661d5
+        namespace: a5d15c7a-50dc-466c-a78b-007e0760f41b
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+      eager: true
