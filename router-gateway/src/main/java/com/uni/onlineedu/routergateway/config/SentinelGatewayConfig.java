@@ -23,13 +23,13 @@ import java.util.List;
  * @date 2020/7/29
  */
 @Configuration
-public class GatewaySentinelConfig {
+public class SentinelGatewayConfig {
 
     private final List<ViewResolver> viewResolvers;
 
     private final ServerCodecConfigurer serverCodecConfigurer;
 
-    public GatewaySentinelConfig(ObjectProvider<List<ViewResolver>> viewResolversProvider, ServerCodecConfigurer serverCodecConfigurer) {
+    public SentinelGatewayConfig(ObjectProvider<List<ViewResolver>> viewResolversProvider, ServerCodecConfigurer serverCodecConfigurer) {
         this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);
         this.serverCodecConfigurer = serverCodecConfigurer;
     }
@@ -52,7 +52,11 @@ public class GatewaySentinelConfig {
         initGatewayRules();
     }
 
+    /**
+     * 配置初始化限流和降级规则
+     */
     private void initGatewayRules() {
+        // 限流规则
         List<FlowRule> rules = new ArrayList<>();
         FlowRule rule = new FlowRule("service-user-info");
         rule.setCount(1);
