@@ -3,3 +3,16 @@ spring:
     name: router-gateway
   profiles:
     active: @springProfilesActive@
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin, RETAIN_UNIQUE
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+logging:
+  level:
+    org.springframework.cloud.gateway.filter.LoadBalancerClientFilter: TRACE

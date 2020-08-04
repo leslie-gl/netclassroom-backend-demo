@@ -1,7 +1,37 @@
+server:
+  port: 80
 spring:
   cloud:
     nacos:
-      config:
+      discovery:
         server-addr: 127.0.0.1:8848
-        file-extension: yaml
-        namespace: a5d15c7a-50dc-466c-a78b-007e0760f41b
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 127.0.0.1:8080
+      # 规则持久化
+    #      datasource:
+    #        ds1:
+    #          nacos:
+    #            server-addr: ${spring.cloud.nacos.config.server-addr}
+    #            dataId: ${spring.application.name}-sentinel-${spring.profiles.active}.json
+    #            namespace: ${spring.cloud.nacos.config.namespace}
+    #            ruleType: flow
+    gateway:
+      discovery:
+        locator:
+          # 开启通过注册中心查询服务真实地址
+          enabled: true
+      routes:
+        - id: service-user-info
+          uri: lb://service-user-info/
+          predicates:
+            - Path=/netclassroom/service-user-info/**
+          filters:
+            - StripPrefix=2
+        - id: service-consumer
+          uri: lb://service-consumer/
+          predicates:
+            - Path=/netclassroom/service-consumer/**
+          filters:
+            - StripPrefix=2

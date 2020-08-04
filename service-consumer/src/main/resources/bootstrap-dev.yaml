@@ -1,7 +1,10 @@
+server:
+  port: 40000
 spring:
   cloud:
     nacos:
-      config:
-        file-extension: yaml
+      discovery:
         server-addr: 127.0.0.1:8848
-        namespace: a5d15c7a-50dc-466c-a78b-007e0760f41b
+feign:
+  sentinel:
+    enabled: true

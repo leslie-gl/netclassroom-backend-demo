@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.io.buffer.DataBuffer;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -28,7 +29,7 @@ public class LoginGlobalFilter implements GlobalFilter {
             ServerHttpResponse response = exchange.getResponse();
             response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
             // 默认httpStatus为 200
-            //response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
             ResponseData<Object> responseData = new ResponseData<>(RESPONSE_CODE_ENUM.JWT_LACK);
             DataBuffer wrap = response.bufferFactory().wrap(JsonUtils.toJsonString(responseData).getBytes(StandardCharsets.UTF_8));
             return response.writeWith(Mono.just(wrap));
