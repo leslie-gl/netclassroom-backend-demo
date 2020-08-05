@@ -36,4 +36,5 @@ public class LoginGlobalFilter implements GlobalFilter {
         }
         return chain.filter(exchange);
     }
+
 }
