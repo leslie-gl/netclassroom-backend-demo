@@ -38,6 +38,7 @@ public class UserController implements UserFeignApi {
 
     @Override
     public ResponseData<UserDTO> queryById(Long id) {
+        System.out.println("端口：" + port);
         return ResponseData.success(PojoConvertUtils.convertObjectToAnother(userService.getById(id), UserDTO.class));
     }
 }
