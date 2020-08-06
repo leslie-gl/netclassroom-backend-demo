@@ -96,4 +96,7 @@ public class FileUtils {
         return isImageJpg(fileName) || isImageJpeg(fileName) || isImagePng(fileName);
     }
 
+    private FileUtils() {
+    }
+
 }
